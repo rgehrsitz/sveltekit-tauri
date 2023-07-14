@@ -1,8 +1,15 @@
 <script>
-	// Add your footer logic here
+	import { Footer, FooterCopyright, FooterLinkGroup, FooterLink } from 'flowbite-svelte';
 </script>
 
-<footer class="p-4 bg-blue-500 text-white">
-	<!-- Add your footer content here -->
-	<p>© 2023 My Application</p>
-</footer>
+<Footer>
+	<FooterCopyright href="/" by="Digital Wave™" year={2023} />
+	<FooterLinkGroup
+		ulClass="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0"
+	>
+		<FooterLink href="/about">About</FooterLink>
+		<FooterLink href="/">Privacy Policy</FooterLink>
+		<FooterLink href="/">Licensing</FooterLink>
+		<FooterLink href="/">Contact</FooterLink>
+	</FooterLinkGroup>
+</Footer>

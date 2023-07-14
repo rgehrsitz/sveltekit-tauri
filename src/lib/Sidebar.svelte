@@ -1,11 +1,15 @@
 <script>
+	import { page } from '$app/stores';
+	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
+	let spanClass = 'flex-1 ml-3 whitespace-nowrap';
+	$: activeUrl = $page.url.pathname;
 </script>
 
-<aside class="p-4 bg-blue-100">
-	<nav>
-		<ul>
-			<li><a href="/" rel="prefetch" class="text-blue-500">Home</a></li>
-			<li><a href="/about" rel="prefetch" class="text-blue-500">About</a></li>
-		</ul>
-	</nav>
-</aside>
+<Sidebar>
+	<SidebarWrapper>
+		<SidebarGroup>
+			<SidebarItem label="Dashboard" href="/" active={activeUrl === '/'} />
+			<SidebarItem label="Sidebar" href="/about" active={activeUrl === '/about'} />
+		</SidebarGroup>
+	</SidebarWrapper>
+</Sidebar>
