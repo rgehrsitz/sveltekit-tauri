@@ -8,8 +8,10 @@
 <Sidebar>
 	<SidebarWrapper>
 		<SidebarGroup>
-			<SidebarItem label="Dashboard" href="/" active={activeUrl === '/'} />
-			<SidebarItem label="Sidebar" href="/about" active={activeUrl === '/about'} />
+			<SidebarItem label="Welcome" href="/" active={activeUrl === '/'} />
+			<SidebarItem label="Equipment" href="/equipment" active={activeUrl === '/equipment'} />
+			<SidebarItem label="Snapshot" href="/snapshot" active={activeUrl === '/snapshot'} />
+			<SidebarItem label="Diff" href="/diff" active={activeUrl === '/diff'} />
 		</SidebarGroup>
 	</SidebarWrapper>
 </Sidebar>
