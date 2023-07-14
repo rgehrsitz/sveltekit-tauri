@@ -1,4 +1,5 @@
 <script>
+	import '../app.postcss';
 	import Header from '$lib/Header.svelte';
 	import Sidebar from '$lib/Sidebar.svelte';
 	import Footer from '$lib/Footer.svelte';
