@@ -1,7 +1,8 @@
 <script>
-	import { Button } from 'flowbite-svelte';
+	// Add your home page logic here
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<Button on:click={() => console.log('test')}>Click me</Button>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div>
+	<h1>Home Page</h1>
+	<!-- Add your home page content here -->
+</div>

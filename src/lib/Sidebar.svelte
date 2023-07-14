@@ -3,5 +3,10 @@
 </script>
 
 <aside>
-	<!-- Add your sidebar content here -->
+	<nav>
+		<ul>
+			<li><a href="/" rel="prefetch">Home</a></li>
+			<li><a href="/about" rel="prefetch">About</a></li>
+		</ul>
+	</nav>
 </aside>
