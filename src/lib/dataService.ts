@@ -40,12 +40,14 @@ export function getEquipmentList (): Equipment[] {
     return [...equipmentList];
 }
 
-export function updateEquipment (id: string, name: string, type: string, parent: string, details: EquipmentDetails): Equipment | undefined {
+export function updateEquipment (id: string, name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, any> = {}): Equipment | undefined {
     const equipment = getEquipment(id);
     if (equipment) {
         equipment.name = name;
         equipment.type = type;
-        equipment.details = details;
+        equipment.description = description;
+        equipment.children = children;
+        equipment.properties = properties;
     }
     return equipment;
 }
