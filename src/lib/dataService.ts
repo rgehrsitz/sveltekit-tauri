@@ -1,5 +1,6 @@
 // src/lib/dataService.ts
 import { v4 as uuidv4 } from 'uuid';
+import { writeTextFile } from '@tauri-apps/api/fs';
 
 export interface EquipmentDetails {
     firmwareVersion?: string;
@@ -27,6 +28,12 @@ let snapshotId = 0;
 
 const equipmentList: Equipment[] = [];
 const snapshotList: Snapshot[] = [];
+
+export async function saveEquipmentToFile (directory: string, filename: string, equipment: Equipment) {
+    const filePath = `${directory}/${filename}.json`;
+    const data = JSON.stringify(equipment, null, 2);
+    await writeTextFile({ path: filePath, contents: data });
+}
 
 export function createEquipment (name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, unknown> = {}): Equipment {
     const timestamp = Date.now();

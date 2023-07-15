@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { createEquipment } from '$lib/dataService';
-	import type { Equipment } from '$lib/dataService';
+	import type { Equipment, saveEquipmentToFile } from '$lib/dataService';
 	import { goto } from '$app/navigation';
 
 	let name = '';
@@ -10,6 +10,8 @@
 	let description = '';
 	let children: Equipment[] = [];
 	let properties: Record<string, any> = {};
+	let directory = '';
+	let filename = '';
 
 	function save() {
 		createEquipment(name, type, description, children, properties);
@@ -31,9 +33,16 @@
 			<input bind:value={type} required /><!-- src/routes/new/+page.svelte -->
 
 			<!-- src/routes/new/+page.svelte -->
+			<!-- src/routes/new/+page.svelte -->
+			<!-- src/routes/new/+page.svelte -->
+			<!-- src/routes/new/+page.svelte -->
+			<!-- src/routes/new/+page.svelte -->
+			<!-- src/routes/new/+page.svelte -->
+			<!-- src/routes/new/+page.svelte -->
 			<script lang="ts">
 				import { createEquipment } from '$lib/dataService';
 				import type { Equipment } from '$lib/dataService';
+				import { saveEquipmentToFile } from '$lib/dataService';
 				import { goto } from '$app/navigation';
 
 				let name = '';
@@ -43,11 +52,11 @@
 				let properties: Record<string, any> = {};
 				let directory = '';
 
-				function save() {
+				async function save() {
 					const equipment = createEquipment(name, type, description, children, properties);
 					// Save the equipment to the specified directory
 					// You'll need to implement the saveEquipmentToFile function
-					saveEquipmentToFile(directory, equipment);
+					await saveEquipmentToFile(directory, filename, equipment);
 					goto('/equipment');
 				}
 			</script>
@@ -57,8 +66,12 @@
 
 				<form on:submit|preventDefault={save}>
 					<label>
-						Directory/Filename:
+						Directory:
 						<input bind:value={directory} required />
+					</label>
+					<label>
+						Filename:
+						<input bind:value={filename} required />
 					</label>
 
 					<label>
