@@ -19,7 +19,7 @@
 	}
 </script>
 
-<EquipmentList {equipmentList} {selectEquipment} />
+<EquipmentList />
 
 {#if selectedEquipment}
 	<EquipmentDetail {selectedEquipment} />
