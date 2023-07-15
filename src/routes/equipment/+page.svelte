@@ -11,7 +11,7 @@
 	let selectedEquipment: Equipment | null = null;
 
 	onMount(async () => {
-		equipmentList = getEquipmentList();
+		equipmentList = await getEquipmentList();
 	});
 
 	function selectEquipment(equipment: Equipment): void {
@@ -19,8 +19,17 @@
 	}
 </script>
 
-<EquipmentList />
-
-{#if selectedEquipment}
-	<EquipmentDetail {selectedEquipment} />
-{/if}
+<div class="flex">
+	<div class="w-1/3 overflow-auto">
+		{#each equipmentList as equipment (equipment.id)}
+			<button on:click={() => selectEquipment(equipment)}>
+				{equipment.name}
+			</button>
+		{/each}
+	</div>
+	<div class="w-2/3">
+		{#if selectedEquipment}
+			<EquipmentDetail {selectedEquipment} />
+		{/if}
+	</div>
+</div>
