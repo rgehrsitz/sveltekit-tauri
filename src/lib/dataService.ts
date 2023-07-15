@@ -12,7 +12,7 @@ export interface Equipment {
     type: string;
     description: string;
     children: Equipment[];
-    properties: Record<string, any>;
+    properties: Record<string, unknown>;
 }
 
 interface Snapshot {
@@ -26,7 +26,7 @@ let snapshotId = 0;
 const equipmentList: Equipment[] = [];
 const snapshotList: Snapshot[] = [];
 
-export function createEquipment (name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, any> = {}): Equipment {
+export function createEquipment (name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, unknown> = {}): Equipment {
     const equipment: Equipment = { id: uuidv4(), name, type, description, children, properties };
     equipmentList.push(equipment);
     return equipment;
@@ -40,7 +40,7 @@ export function getEquipmentList (): Equipment[] {
     return [...equipmentList];
 }
 
-export function updateEquipment (id: string, name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, any> = {}): Equipment | undefined {
+export function updateEquipment (id: string, name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, unknown> = {}): Equipment | undefined {
     const equipment = getEquipment(id);
     if (equipment) {
         equipment.name = name;

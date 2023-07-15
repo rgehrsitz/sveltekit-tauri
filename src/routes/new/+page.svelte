@@ -13,7 +13,7 @@
 
 	function save() {
 		createEquipment(name, type, description, children, properties);
-		goto('/home');
+		goto('/equipment');
 	}
 </script>
 
