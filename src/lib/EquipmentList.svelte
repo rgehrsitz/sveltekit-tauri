@@ -17,7 +17,8 @@
 	}
 
 	async function saveNewEquipment(): Promise<void> {
-		if (newEquipment.name && newEquipment.type) {
+		if (newEquipment.name && newEquipment.type && newEquipment.properties) {
+			newEquipment.properties = JSON.parse(newEquipment.properties);
 			await addEquipment(newEquipment as Equipment);
 			newEquipment = {};
 			equipmentList = await getEquipmentList();
@@ -48,6 +49,10 @@
 	<label>
 		Type
 		<input type="text" bind:value={newEquipment.type} />
+	</label>
+	<label>
+		Properties (JSON format)
+		<textarea bind:value={newEquipment.properties} />
 	</label>
 	<button on:click={saveNewEquipment}>Save</button>
 </div>
