@@ -31,7 +31,9 @@ const snapshotList: Snapshot[] = [];
 
 export async function saveEquipmentToFile (directory: string, filename: string, equipment: Equipment) {
     const filePath = `${directory}/${filename}.json`;
+    console.log(`Saving equipment to ${filePath}`);
     const data = JSON.stringify(equipment, null, 2);
+    console.log(data);
     await writeTextFile({ path: filePath, contents: data });
 }
 

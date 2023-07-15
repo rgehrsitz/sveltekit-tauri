@@ -2,7 +2,8 @@
 
 <script lang="ts">
 	import { createEquipment } from '$lib/dataService';
-	import type { Equipment, saveEquipmentToFile } from '$lib/dataService';
+	import type { Equipment } from '$lib/dataService';
+	import { saveEquipmentToFile } from '$lib/dataService';
 	import { goto } from '$app/navigation';
 
 	let name = '';
@@ -13,8 +14,10 @@
 	let directory = '';
 	let filename = '';
 
-	function save() {
-		createEquipment(name, type, description, children, properties);
+	async function save() {
+		const equipment = createEquipment(name, type, description, children, properties);
+		// Save the equipment to the specified directory
+		await saveEquipmentToFile(directory, filename, equipment);
 		goto('/equipment');
 	}
 </script>
@@ -30,36 +33,7 @@
 
 		<label>
 			Type:
-			<input bind:value={type} required /><!-- src/routes/new/+page.svelte -->
-
-			<!-- src/routes/new/+page.svelte -->
-			<!-- src/routes/new/+page.svelte -->
-			<!-- src/routes/new/+page.svelte -->
-			<!-- src/routes/new/+page.svelte -->
-			<!-- src/routes/new/+page.svelte -->
-			<!-- src/routes/new/+page.svelte -->
-			<!-- src/routes/new/+page.svelte -->
-			<script lang="ts">
-				import { createEquipment } from '$lib/dataService';
-				import type { Equipment } from '$lib/dataService';
-				import { saveEquipmentToFile } from '$lib/dataService';
-				import { goto } from '$app/navigation';
-
-				let name = '';
-				let type = '';
-				let description = '';
-				let children: Equipment[] = [];
-				let properties: Record<string, any> = {};
-				let directory = '';
-
-				async function save() {
-					const equipment = createEquipment(name, type, description, children, properties);
-					// Save the equipment to the specified directory
-					// You'll need to implement the saveEquipmentToFile function
-					await saveEquipmentToFile(directory, filename, equipment);
-					goto('/equipment');
-				}
-			</script>
+			<input bind:value={type} required />
 
 			<div class="container mx-auto px-4">
 				<h1 class="text-4xl font-bold mb-4">New Configuration</h1>
