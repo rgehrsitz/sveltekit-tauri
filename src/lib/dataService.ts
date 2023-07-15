@@ -13,6 +13,8 @@ export interface Equipment {
     description: string;
     children: Equipment[];
     properties: Record<string, unknown>;
+    createdAt: number;  // Add this line
+    updatedAt: number;  // Add this line
 }
 
 interface Snapshot {
@@ -27,7 +29,8 @@ const equipmentList: Equipment[] = [];
 const snapshotList: Snapshot[] = [];
 
 export function createEquipment (name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, unknown> = {}): Equipment {
-    const equipment: Equipment = { id: uuidv4(), name, type, description, children, properties };
+    const timestamp = Date.now();
+    const equipment: Equipment = { id: uuidv4(), name, type, description, children, properties, createdAt: timestamp, updatedAt: timestamp };
     equipmentList.push(equipment);
     return equipment;
 }
@@ -48,6 +51,7 @@ export function updateEquipment (id: string, name: string, type: string, descrip
         equipment.description = description;
         equipment.children = children;
         equipment.properties = properties;
+        equipment.updatedAt = Date.now();  // Add this line
     }
     return equipment;
 }
