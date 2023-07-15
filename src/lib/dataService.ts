@@ -1,11 +1,11 @@
 // src/lib/dataService.ts
 
-interface EquipmentDetails {
+export interface EquipmentDetails {
     firmwareVersion?: string;
     // Add other details as needed
 }
 
-interface Equipment {
+export interface Equipment {
     id: number;
     name: string;
     type: string;
