@@ -7,6 +7,7 @@
 	let equipmentList: Equipment[] = [];
 	let selectedEquipment: Equipment | null = null;
 	let newEquipment: Partial<Equipment> = {};
+	let newProperties: Record<string, string> = {};
 
 	onMount(async () => {
 		equipmentList = await getEquipmentList();
@@ -17,12 +18,28 @@
 	}
 
 	async function saveNewEquipment(): Promise<void> {
-		if (newEquipment.name && newEquipment.type && newEquipment.properties) {
-			newEquipment.properties = JSON.parse(newEquipment.properties);
+		if (newEquipment.name && newEquipment.type) {
+			newEquipment.properties = newProperties;
 			await addEquipment(newEquipment as Equipment);
 			newEquipment = {};
+			newProperties = {};
 			equipmentList = await getEquipmentList();
 		}
+	}
+
+	function addProperty(): void {
+		newProperties[''] = '';
+	}
+
+	function updatePropertyName(oldKey: string, newKey: string): void {
+		if (oldKey in newProperties) {
+			newProperties[newKey] = newProperties[oldKey];
+			delete newProperties[oldKey];
+		}
+	}
+
+	function updatePropertyValue(key: string, value: string): void {
+		newProperties[key] = value;
 	}
 </script>
 
@@ -50,9 +67,22 @@
 		Type
 		<input type="text" bind:value={newEquipment.type} />
 	</label>
-	<label>
-		Properties (JSON format)
-		<textarea bind:value={newEquipment.properties} />
-	</label>
+	{#each Object.keys(newProperties) as key (key)}
+		<div>
+			<label>
+				Property Name
+				<input type="text" value={key} on:change={(e) => updatePropertyName(key, e.target.value)} />
+			</label>
+			<label>
+				Property Value
+				<input
+					type="text"
+					bind:value={newProperties[key]}
+					on:change={(e) => updatePropertyValue(key, e.target.value)}
+				/>
+			</label>
+		</div>
+	{/each}
+	<button on:click={addProperty}>Add Property</button>
 	<button on:click={saveNewEquipment}>Save</button>
 </div>
