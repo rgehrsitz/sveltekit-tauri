@@ -9,7 +9,7 @@
 		<div>
 			<h2 class="text-2xl font-bold mb-2">File Operations</h2>
 			<ul>
-				<li><a href="#new">New Configuration</a></li>
+				<li><a href="/new">New Configuration</a></li>
 				<li><a href="#open">Open Configuration</a></li>
 				<li><a href="#clone">Clone Configuration</a></li>
 				<li><a href="#recent">Recent Configurations</a></li>
