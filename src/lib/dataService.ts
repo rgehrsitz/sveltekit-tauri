@@ -32,7 +32,7 @@ export function createEquipment (name: string, type: string, description: string
     return equipment;
 }
 
-export function getEquipment (id: number): Equipment | undefined {
+export function getEquipment (id: string): Equipment | undefined {
     return equipmentList.find(equipment => equipment.id === id);
 }
 
@@ -40,18 +40,17 @@ export function getEquipmentList (): Equipment[] {
     return [...equipmentList];
 }
 
-export function updateEquipment (id: number, name: string, type: string, parent: string, details: EquipmentDetails): Equipment | undefined {
+export function updateEquipment (id: string, name: string, type: string, parent: string, details: EquipmentDetails): Equipment | undefined {
     const equipment = getEquipment(id);
     if (equipment) {
         equipment.name = name;
         equipment.type = type;
-        equipment.parent = parent;
         equipment.details = details;
     }
     return equipment;
 }
 
-export function deleteEquipment (id: number): void {
+export function deleteEquipment (id: string): void {
     const index = equipmentList.findIndex(equipment => equipment.id === id);
     if (index !== -1) {
         equipmentList.splice(index, 1);
