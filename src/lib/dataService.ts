@@ -48,7 +48,7 @@ export async function saveEquipmentToFile (equipment: Equipment) {
 
 export async function addEquipment (equipment: Equipment): Promise<void> {
     equipmentList.push(equipment);
-    await saveEquipmentToFile(equipmentList);
+    await saveEquipmentToFile(equipment);
 }
 
 export function createEquipment (name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, unknown> = {}): Equipment {
