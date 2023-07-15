@@ -34,40 +34,6 @@
 		<label>
 			Type:
 			<input bind:value={type} required />
-
-			<div class="container mx-auto px-4">
-				<h1 class="text-4xl font-bold mb-4">New Configuration</h1>
-
-				<form on:submit|preventDefault={save}>
-					<label>
-						Directory:
-						<input bind:value={directory} required />
-					</label>
-					<label>
-						Filename:
-						<input bind:value={filename} required />
-					</label>
-
-					<label>
-						Name:
-						<input bind:value={name} required />
-					</label>
-
-					<label>
-						Type:
-						<input bind:value={type} required />
-					</label>
-
-					<label>
-						Description:
-						<input bind:value={description} required />
-					</label>
-
-					<!-- Add fields for children and properties as necessary -->
-
-					<button type="submit">Save</button>
-				</form>
-			</div>
 		</label>
 
 		<label>
