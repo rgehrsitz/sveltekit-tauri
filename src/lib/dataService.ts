@@ -1,4 +1,5 @@
 // src/lib/dataService.ts
+import { v4 as uuidv4 } from 'uuid';
 
 export interface EquipmentDetails {
     firmwareVersion?: string;
@@ -6,11 +7,12 @@ export interface EquipmentDetails {
 }
 
 export interface Equipment {
-    id: number;
+    id: string;
     name: string;
     type: string;
-    parent: string;
-    details: EquipmentDetails;
+    description: string;
+    children: Equipment[];
+    properties: Record<string, any>;
 }
 
 interface Snapshot {
@@ -19,14 +21,13 @@ interface Snapshot {
     configuration: Equipment[];
 }
 
-let equipmentId = 0;
 let snapshotId = 0;
 
 const equipmentList: Equipment[] = [];
 const snapshotList: Snapshot[] = [];
 
-export function createEquipment (name: string, type: string, parent: string, details: EquipmentDetails): Equipment {
-    const equipment: Equipment = { id: equipmentId++, name, type, parent, details };
+export function createEquipment (name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, any> = {}): Equipment {
+    const equipment: Equipment = { id: uuidv4(), name, type, description, children, properties };
     equipmentList.push(equipment);
     return equipment;
 }

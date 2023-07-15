@@ -1,13 +1,18 @@
+<!-- src/routes/new/+page.svelte -->
+
 <script lang="ts">
 	import { createEquipment } from '$lib/dataService';
+	import type { Equipment } from '$lib/dataService';
 	import { goto } from '$app/navigation';
 
 	let name = '';
 	let type = '';
-	// Add other fields as necessary
+	let description = '';
+	let children: Equipment[] = [];
+	let properties: Record<string, any> = {};
 
 	function save() {
-		createEquipment({ name, type /*, other fields */ });
+		createEquipment(name, type, description, children, properties);
 		goto('/home');
 	}
 </script>
@@ -26,7 +31,12 @@
 			<input bind:value={type} required />
 		</label>
 
-		<!-- Add other fields as necessary -->
+		<label>
+			Description:
+			<input bind:value={description} required />
+		</label>
+
+		<!-- Add fields for children and properties as necessary -->
 
 		<button type="submit">Save</button>
 	</form>
