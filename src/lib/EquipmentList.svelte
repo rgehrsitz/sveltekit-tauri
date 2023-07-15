@@ -1,18 +1,27 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getEquipmentList } from '$lib/dataService';
+	import { getEquipmentList, addEquipment } from '$lib/dataService';
 	import type { Equipment } from '$lib/dataService';
 	import EquipmentDetail from './EquipmentDetail.svelte';
 
 	let equipmentList: Equipment[] = [];
 	let selectedEquipment: Equipment | null = null;
+	let newEquipment: Partial<Equipment> = {};
 
 	onMount(async () => {
-		equipmentList = getEquipmentList();
+		equipmentList = await getEquipmentList();
 	});
 
 	function selectEquipment(equipment: Equipment): void {
 		selectedEquipment = equipment;
+	}
+
+	async function saveNewEquipment(): Promise<void> {
+		if (newEquipment.name && newEquipment.type) {
+			await addEquipment(newEquipment as Equipment);
+			newEquipment = {};
+			equipmentList = await getEquipmentList();
+		}
 	}
 </script>
 
@@ -29,3 +38,16 @@
 {#if selectedEquipment}
 	<EquipmentDetail {selectedEquipment} />
 {/if}
+
+<div>
+	<h2>Add New Equipment</h2>
+	<label>
+		Name
+		<input type="text" bind:value={newEquipment.name} />
+	</label>
+	<label>
+		Type
+		<input type="text" bind:value={newEquipment.type} />
+	</label>
+	<button on:click={saveNewEquipment}>Save</button>
+</div>

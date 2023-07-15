@@ -46,6 +46,11 @@ export async function saveEquipmentToFile (equipment: Equipment) {
     }
 }
 
+export async function addEquipment (equipment: Equipment): Promise<void> {
+    equipmentList.push(equipment);
+    await saveEquipmentToFile(equipmentList);
+}
+
 export function createEquipment (name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, unknown> = {}): Equipment {
     const timestamp = Date.now();
     const equipment: Equipment = { id: uuidv4(), name, type, description, children, properties, createdAt: timestamp, updatedAt: timestamp };
