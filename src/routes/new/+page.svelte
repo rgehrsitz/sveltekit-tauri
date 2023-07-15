@@ -17,7 +17,7 @@
 	async function save() {
 		const equipment = createEquipment(name, type, description, children, properties);
 		// Save the equipment to the specified directory
-		await saveEquipmentToFile(directory, filename, equipment);
+		await saveEquipmentToFile(equipment);
 		goto('/equipment');
 	}
 </script>
