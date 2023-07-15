@@ -3,6 +3,7 @@
 	import { getEquipmentList, addEquipment } from '$lib/dataService';
 	import type { Equipment } from '$lib/dataService';
 	import EquipmentDetail from './EquipmentDetail.svelte';
+	import { Button } from 'flowbite-svelte';
 
 	let equipmentList: Equipment[] = [];
 	let selectedEquipment: Equipment | null = null;
@@ -31,15 +32,22 @@
 		newProperties[''] = '';
 	}
 
-	function updatePropertyName(oldKey: string, newKey: string): void {
-		if (oldKey in newProperties) {
-			newProperties[newKey] = newProperties[oldKey];
-			delete newProperties[oldKey];
+	function updatePropertyName(oldKey: string, event: Event): void {
+		const target = event.target as HTMLInputElement;
+		if (target) {
+			const newKey = target.value;
+			if (oldKey in newProperties) {
+				newProperties[newKey] = newProperties[oldKey];
+				delete newProperties[oldKey];
+			}
 		}
 	}
 
-	function updatePropertyValue(key: string, value: string): void {
-		newProperties[key] = value;
+	function updatePropertyValue(key: string, event: Event): void {
+		const target = event.target as HTMLInputElement;
+		if (target) {
+			newProperties[key] = target.value;
+		}
 	}
 </script>
 
@@ -71,18 +79,18 @@
 		<div>
 			<label>
 				Property Name
-				<input type="text" value={key} on:change={(e) => updatePropertyName(key, e.target.value)} />
+				<input type="text" value={key} on:change={(e) => updatePropertyName(key, e)} />
 			</label>
 			<label>
 				Property Value
 				<input
 					type="text"
 					bind:value={newProperties[key]}
-					on:change={(e) => updatePropertyValue(key, e.target.value)}
+					on:change={(e) => updatePropertyValue(key, e)}
 				/>
 			</label>
 		</div>
 	{/each}
-	<button on:click={addProperty}>Add Property</button>
-	<button on:click={saveNewEquipment}>Save</button>
+	<Button on:click={addProperty}>Add Property</Button>
+	<Button on:click={saveNewEquipment}>Save</Button>
 </div>
