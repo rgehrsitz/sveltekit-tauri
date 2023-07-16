@@ -1,5 +1,13 @@
+<!-- src/routes/+page.svelte -->
+
 <script lang="ts">
 	// Import any necessary functions or types
+	import { getEquipmentList, openEquipmentFile } from '$lib/dataService';
+
+	async function handleOpenFile(): Promise<void> {
+		await openEquipmentFile();
+		equipmentList = await getEquipmentList();
+	}
 </script>
 
 <div class="container mx-auto px-4">

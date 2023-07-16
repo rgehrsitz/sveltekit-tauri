@@ -29,6 +29,22 @@ let snapshotId = 0;
 const equipmentList: Equipment[] = [];
 const snapshotList: Snapshot[] = [];
 
+export async function openEquipmentFile (): Promise<void> {
+    const options = {
+        filters: [
+            { name: 'JSON', extensions: ['json'] },
+            { name: 'All Files', extensions: ['*'] }
+        ]
+    };
+    const filePaths = await dialog.open(options);
+    if (filePaths.length > 0) {
+        const fileContents = await fs.readFile({ path: filePaths[0] });
+        const equipmentData = JSON.parse(fileContents);
+        equipmentList = equipmentData;
+    }
+}
+
+
 export async function saveEquipmentToFile (equipment: Equipment) {
     const options = {
         defaultPath: 'filename1.json',
