@@ -5,8 +5,8 @@
 	import EquipmentDetail from './EquipmentDetail.svelte';
 	import { Button } from 'flowbite-svelte';
 
-	let equipmentList: Equipment[] = [];
-	let selectedEquipment: Equipment | null = null;
+	export let equipmentList: Equipment[] = [];
+	export let selectedEquipment: Equipment | null = null;
 	let newEquipment: Partial<Equipment> = {};
 	let newProperties: Record<string, string> = {};
 
