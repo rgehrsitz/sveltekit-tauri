@@ -21,11 +21,7 @@
 
 <div class="flex">
 	<div class="w-1/3 overflow-auto">
-		{#each equipmentList as equipment (equipment.id)}
-			<button on:click={() => selectEquipment(equipment)}>
-				{equipment.name}
-			</button>
-		{/each}
+		<EquipmentList bind:equipmentList bind:selectedEquipment />
 	</div>
 	<div class="w-2/3">
 		{#if selectedEquipment}
