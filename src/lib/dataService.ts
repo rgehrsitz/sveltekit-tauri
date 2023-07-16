@@ -18,6 +18,11 @@ export interface Equipment {
     updatedAt: number;  // Add this line
 }
 
+
+export function getEquipmentList (): Equipment[] {
+    return [...equipmentList];
+}
+
 interface Snapshot {
     id: number;
     timestamp: number;
@@ -78,9 +83,7 @@ export function getEquipment (id: string): Equipment | undefined {
     return equipmentList.find(equipment => equipment.id === id);
 }
 
-export function getEquipmentList (): Equipment[] {
-    return [...equipmentList];
-}
+
 
 export function updateEquipment (id: string, name: string, type: string, description: string, children: Equipment[] = [], properties: Record<string, unknown> = {}): Equipment | undefined {
     const equipment = getEquipment(id);

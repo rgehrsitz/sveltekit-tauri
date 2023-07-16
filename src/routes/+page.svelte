@@ -3,6 +3,9 @@
 <script lang="ts">
 	// Import any necessary functions or types
 	import { getEquipmentList, openEquipmentFile } from '$lib/dataService';
+	import type { Equipment } from '$lib/dataService';
+
+	let equipmentList: Equipment[] = [];
 
 	async function handleOpenFile(): Promise<void> {
 		await openEquipmentFile();
