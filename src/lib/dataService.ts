@@ -26,7 +26,7 @@ interface Snapshot {
 
 let snapshotId = 0;
 
-const equipmentList: Equipment[] = [];
+let equipmentList: Equipment[] = [];
 const snapshotList: Snapshot[] = [];
 
 export async function openEquipmentFile (): Promise<void> {
@@ -37,8 +37,8 @@ export async function openEquipmentFile (): Promise<void> {
         ]
     };
     const filePaths = await dialog.open(options);
-    if (filePaths.length > 0) {
-        const fileContents = await fs.readFile({ path: filePaths[0] });
+    if (filePaths && filePaths.length > 0) {
+        const fileContents = await fs.readTextFile(filePaths[0]);
         const equipmentData = JSON.parse(fileContents);
         equipmentList = equipmentData;
     }
