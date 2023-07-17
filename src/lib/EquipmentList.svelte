@@ -5,13 +5,13 @@
 	import EquipmentDetail from './EquipmentDetail.svelte';
 	import { Button } from 'flowbite-svelte';
 
-	export let equipmentList: Equipment[] = [];
-	export let selectedEquipment: Equipment | null = null;
+	export let equipmentList: Equipment[];
+	export let selectedEquipment: Equipment | null;
 	let newEquipment: Partial<Equipment> = {};
 	let newProperties: Record<string, string> = {};
 
 	onMount(async () => {
-		equipmentList = await getEquipmentList();
+		await getEquipmentList();
 	});
 
 	function selectEquipment(equipment: Equipment): void {
@@ -24,7 +24,7 @@
 			await addEquipment(newEquipment as Equipment);
 			newEquipment = {};
 			newProperties = {};
-			equipmentList = await getEquipmentList();
+			await getEquipmentList();
 		}
 	}
 

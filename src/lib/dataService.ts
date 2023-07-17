@@ -35,7 +35,7 @@ interface Snapshot {
 
 let snapshotId = 0;
 
-let equipmentList: Equipment[] = [];
+export let equipmentList: Equipment[] = [];
 const snapshotList: Snapshot[] = [];
 
 export async function openEquipmentFile (): Promise<void> {
