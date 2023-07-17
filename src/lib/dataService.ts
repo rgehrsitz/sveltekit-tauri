@@ -42,12 +42,21 @@ export async function openEquipmentFile (): Promise<void> {
         ]
     };
     const filePaths = await dialog.open(options);
-    if (filePaths && filePaths.length > 0) {
+    if (typeof filePaths === 'string') {
+        // If filePaths is a string, use it directly
+        console.log('Opening file:', filePaths);
+        const fileContents = await fs.readTextFile(filePaths);
+        const equipmentData = JSON.parse(fileContents);
+        equipmentList = equipmentData;
+    } else if (Array.isArray(filePaths) && filePaths.length > 0) {
+        // If filePaths is an array, use the first element
+        console.log('Opening file:', filePaths[0]);
         const fileContents = await fs.readTextFile(filePaths[0]);
         const equipmentData = JSON.parse(fileContents);
         equipmentList = equipmentData;
     }
 }
+
 
 
 export async function saveEquipmentToFile (equipment: Equipment) {
