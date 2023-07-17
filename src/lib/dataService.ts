@@ -20,6 +20,10 @@ export interface Equipment {
 
 
 export function getEquipmentList (): Equipment[] {
+    if (!Array.isArray(equipmentList)) {
+        return [];
+    }
+
     return [...equipmentList];
 }
 
@@ -55,6 +59,7 @@ export async function openEquipmentFile (): Promise<void> {
         const equipmentData = JSON.parse(fileContents);
         equipmentList = equipmentData;
     }
+    console.log('Equipment list:', equipmentList);
 }
 
 
