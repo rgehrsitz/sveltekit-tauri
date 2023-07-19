@@ -90,7 +90,3 @@
 	<Button on:click={addProperty}>Add Property</Button>
 	<Button on:click={saveNewEquipment}>Save</Button>
 </div>
-
-{#if selectedEquipment}
-	<EquipmentDetail {selectedEquipment} />
-{/if}
